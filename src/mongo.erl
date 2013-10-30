@@ -393,7 +393,7 @@ binary_to_hexstr (Bin) ->
 add_user (Permission, Username, Password) ->
 	User = case find_one ("system.users", {user, Username}) of {} -> {user, Username}; {Doc} -> Doc end,
 	Rec = {readOnly, case Permission of read_only -> true; read_write -> false end, pwd, pw_hash (Username, Password)},
-	save (system.users, bson:merge (Rec, User)).
+	save ("system.users", bson:merge (Rec, User)).
 
 % Index %
 
